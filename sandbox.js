@@ -1,5 +1,5 @@
 const frame=document.querySelector('#device-frame'),space=document.querySelector('#device-space'),prototype=document.querySelector('#prototype'),panel=document.querySelector('#settings-panel'),toggle=document.querySelector('#settings-toggle');let width=393,height=852;
-function fit(){const scale=Math.min(1,(innerWidth-32)/width,(innerHeight-48)/height);frame.style.width=width+'px';frame.style.height=height+'px';frame.style.transform='scale('+scale+')';space.style.width=width*scale+'px';space.style.height=height*scale+'px';}
+function fit(){const scale=Math.min(1,(innerWidth-32)/width,(innerHeight-48)/height);frame.style.width=width+'px';frame.style.height=height+'px';frame.style.transform='scale('+scale+')';space.style.width=width*scale+'px';space.style.height=height*scale+'px';const box=space.getBoundingClientRect();document.documentElement.style.setProperty('--settings-left',Math.max(16,box.left-80-44)+'px');document.documentElement.style.setProperty('--settings-top',box.top+'px');}
 function send(action,id){prototype.contentWindow.postMessage({source:'trailer-sandbox',action,id},location.origin);}
 toggle.onclick=()=>{panel.hidden=!panel.hidden;toggle.setAttribute('aria-expanded',String(!panel.hidden));};
 document.querySelector('#device').onchange=e=>{[width,height]=e.target.value.split(',').map(Number);fit();};
