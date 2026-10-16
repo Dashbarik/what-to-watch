@@ -6,5 +6,13 @@ document.querySelector('#device').onchange=e=>{[width,height]=e.target.value.spl
 document.querySelector('#title').onchange=e=>send('title',Number(e.target.value));
 for(const name of ['status','island','home'])document.querySelector('#'+name+'-toggle').onchange=e=>frame.classList.toggle('no-'+name,!e.target.checked);
 document.querySelector('#replay').onclick=()=>send('restart',Number(document.querySelector('#title').value));
-prototype.onload=()=>send('title',Number(document.querySelector('#title').value));
+function installTouchCursor(){
+ const doc=prototype.contentDocument;if(!doc)return;
+ let style=doc.getElementById('sandbox-touch-cursor');if(!style){style=doc.createElement('style');style.id='sandbox-touch-cursor';doc.head.appendChild(style);}
+ const svg='<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9" fill="white" fill-opacity=".35" stroke="black" stroke-opacity=".45" stroke-width="3"/><circle cx="12" cy="12" r="9" fill="none" stroke="white" stroke-opacity=".9" stroke-width="1"/></svg>';
+ const cursor='url("data:image/svg+xml,'+encodeURIComponent(svg)+'") 12 12, default';
+ style.textContent='@media (hover:hover) and (pointer:fine){html,body,body *{cursor:'+cursor+' !important}}';
+}
+prototype.onload=()=>{installTouchCursor();send('title',Number(document.querySelector('#title').value));};
+if(prototype.contentDocument?.readyState==='complete')installTouchCursor();
 addEventListener('resize',fit);addEventListener('keydown',e=>{if(e.key==='Escape'){panel.hidden=true;toggle.setAttribute('aria-expanded','false');}});fit();
