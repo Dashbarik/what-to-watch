@@ -1,0 +1,19 @@
+<!doctype html>
+<html lang="ru"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Лента трейлеров — песочница</title><link rel="stylesheet" href="sandbox.css"></head>
+<body>
+<button class="settings-toggle" id="settings-toggle" aria-label="Настройки предпросмотра" aria-expanded="false">⚙</button>
+<aside id="settings-panel" hidden aria-label="Настройки предпросмотра">
+<h1>Предпросмотр</h1>
+<label>Устройство<select id="device"><option value="393,852">iPhone 14 Pro · 393 × 852</option><option value="375,667">Компактный · 375 × 667</option><option value="430,932">Большой · 430 × 932</option></select></label>
+<label>Тайтл<select id="title"><option value="0">Слово пацана</option><option value="1">Дом дракона</option></select></label>
+<fieldset><legend>Системные элементы</legend><label class="toggle">Status bar<input id="status-toggle" type="checkbox" checked></label><label class="toggle">Dynamic Island<input id="island-toggle" type="checkbox" checked></label><label class="toggle">Home indicator<input id="home-toggle" type="checkbox" checked></label></fieldset>
+<button class="reset" id="replay">Начать заново</button>
+<a href="./trailer.html" target="_blank" rel="noopener">Открыть на весь экран ↗</a>
+<p>На телефоне открывайте сам прототип. Здесь можно проверить разные размеры экрана.</p>
+</aside>
+<main aria-label="Предпросмотр мобильной страницы"><div id="device-space"><div class="device" id="device-frame">
+<div class="system-status" aria-hidden="true"><strong>9:41</strong><span>▮▮▮ ◒ ▰</span></div><div class="island" aria-hidden="true"></div>
+<iframe id="prototype" src="./trailer.html?preview=1" title="Лента трейлеров" allow="autoplay; fullscreen"></iframe>
+<div class="home-area" aria-hidden="true"><i></i></div>
+</div></div></main>
+<script src="sandbox.js"></script></body></html>
