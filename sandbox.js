@@ -4,14 +4,14 @@ function send(action,id){prototype.contentWindow.postMessage({source:'trailer-sa
 toggle.onclick=()=>{panel.hidden=!panel.hidden;toggle.setAttribute('aria-expanded',String(!panel.hidden));};
 document.querySelector('#device').onchange=e=>{[width,height]=e.target.value.split(',').map(Number);fit();};
 document.querySelector('#title').onchange=e=>send('title',Number(e.target.value));
-for(const name of ['status','island','home'])document.querySelector('#'+name+'-toggle').onchange=e=>frame.classList.toggle('no-'+name,!e.target.checked);
+for(const name of ['status','island','home'])document.querySelector('#'+name+'-toggle').onchange=e=>{frame.classList.toggle('no-'+name,!e.target.checked);installTouchCursor();};
 document.querySelector('#replay').onclick=()=>send('restart',Number(document.querySelector('#title').value));
 function installTouchCursor(){
- const doc=prototype.contentDocument;if(!doc)return;
+ const doc=prototype.contentDocument;if(!doc)return;doc.documentElement.style.setProperty('--preview-status-height',document.querySelector('#status-toggle').checked?'44px':'0px');
  let style=doc.getElementById('sandbox-touch-cursor');if(!style){style=doc.createElement('style');style.id='sandbox-touch-cursor';doc.head.appendChild(style);}
  const svg='<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9" fill="white" fill-opacity=".35" stroke="black" stroke-opacity=".45" stroke-width="3"/><circle cx="12" cy="12" r="9" fill="none" stroke="white" stroke-opacity=".9" stroke-width="1"/></svg>';
  const cursor='url("data:image/svg+xml,'+encodeURIComponent(svg)+'") 12 12, default';
- style.textContent='@media (hover:hover) and (pointer:fine){html,body,body *{cursor:'+cursor+' !important}}';
+ style.textContent='.sandbox-embedded .phone>header{top:calc(var(--preview-status-height,44px) + 8px)}.sandbox-embedded #filters{top:calc(var(--preview-status-height,44px) + 56px)}.sandbox-embedded .detail-nav{height:calc(52px + var(--preview-status-height,44px));padding-top:var(--preview-status-height,44px)}.sandbox-embedded #toast.bookmark-toast{top:calc(var(--preview-status-height,44px) + 8px)}@media (hover:hover) and (pointer:fine){html,body,body *{cursor:'+cursor+' !important}}';
 }
 prototype.onload=()=>{installTouchCursor();send('title',Number(document.querySelector('#title').value));};
 if(prototype.contentDocument?.readyState==='complete')installTouchCursor();
