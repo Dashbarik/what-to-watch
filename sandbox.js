@@ -1,5 +1,5 @@
 const frame=document.querySelector('#device-frame'),space=document.querySelector('#device-space'),prototype=document.querySelector('#prototype'),panel=document.querySelector('#settings-panel');let width=393,height=852;
-function fit(){const available=innerWidth>=800?innerWidth-32-384:innerWidth-32;const scale=Math.min(1,available/width,(innerHeight-48)/height);frame.style.width=width+'px';frame.style.height=height+'px';frame.style.transform='scale('+scale+')';space.style.width=width*scale+'px';space.style.height=height*scale+'px';}
+function fit(){const available=innerWidth-32;const scale=Math.min(1,available/width,(innerHeight-48)/height);frame.style.width=width+'px';frame.style.height=height+'px';frame.style.transform='scale('+scale+')';space.style.width=width*scale+'px';space.style.height=height*scale+'px';document.documentElement.style.setProperty('--device-half-width',width*scale/2+'px');document.documentElement.style.setProperty('--device-top',space.getBoundingClientRect().top+'px');}
 function send(action,id){prototype.contentWindow.postMessage({source:'trailer-sandbox',action,id},location.origin);}
 const device=document.querySelector('#device'),options=document.querySelector('#device-options');
 function closeOptions(){options.hidden=true;device.setAttribute('aria-expanded','false');}
@@ -19,3 +19,5 @@ function installTouchCursor(){
 prototype.onload=()=>{installTouchCursor();send('title',0);};
 if(prototype.contentDocument?.readyState==='complete')installTouchCursor();
 addEventListener('resize',fit);addEventListener('keydown',e=>{if(e.key==='Escape')closeOptions();});fit();
+
+addEventListener('pointerdown',()=>send('dismiss-filters',0),true);
