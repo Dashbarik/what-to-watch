@@ -248,7 +248,7 @@ document.addEventListener('click',e=>{if(dismissedRecommendationTap){dismissedRe
 document.addEventListener('keydown',e=>{if(e.key==='Escape')closeRecommendationMenu();});
 </script><script>// Transcript timings follow the audio track of each local trailer.
 titles[0].cues=[{start:1,end:3.34,text:'[Неразборчивая речь]'},{start:3.98,end:5.85,text:'Когда вернулся, вижу…'},{start:7.46,end:9.35,text:'Зубы на нас точат.'},{start:15.3,end:17.5,text:'И тут вы такие, да!'}];
-titles[1].cues=[{"start": 0.0, "end": 6.36, "text": "У твоей семьи есть драконы."}, {"start": 8.26, "end": 10.82, "text": "Людям не стоит пренебрегать их силой."}, {"start": 15.89, "end": 19.71, "text": "Если Рейнира придет к власти, она сможет пресечь любые притязания на трон."}];
+titles[1].cues=[{"start": 0, "end": 0.85, "text": "…порядок."}, {"start": 4.28, "end": 6.4, "text": "У твоей семьи есть драконы."}, {"start": 8.22, "end": 9.38, "text": "Людям не стоит"}, {"start": 9.38, "end": 10.85, "text": "пренебрегать их силой."}, {"start": 15.64, "end": 17.35, "text": "Если Рейнира придёт к власти,"}, {"start": 17.35, "end": 18.39, "text": "она сможет пресечь"}, {"start": 18.39, "end": 19.85, "text": "любые притязания на трон."}];
 // Contained mobile sheets and title pages share the feed's playback state.
 const sheetElement=$('#sheet'),backdrop=$('#sheet-backdrop');let closeTimer,previousFocus;
 Object.defineProperty(sheetElement,'open',{get:()=>!sheetElement.hidden});sheetElement.close=()=>{if(sheetElement.hidden)return;sheetElement.hidden=true;sheetElement.dispatchEvent(new Event('close'));};

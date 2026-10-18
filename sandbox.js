@@ -12,7 +12,7 @@ document.querySelector('#replay').onclick=()=>send('restart',0);
 function installTouchCursor(){
  const doc=prototype.contentDocument;if(!doc)return;doc.documentElement.style.setProperty('--preview-status-height','44px');
  let style=doc.getElementById('sandbox-touch-cursor');if(!style){style=doc.createElement('style');style.id='sandbox-touch-cursor';doc.head.appendChild(style);}
- const svg='<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><circle cx="12" cy="12" r="12" fill="white" fill-opacity=".35"/></svg>';
+ const svg='<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><circle cx="12" cy="12" r="11.5" fill="white" fill-opacity=".35" stroke="white" stroke-opacity=".75" stroke-width="1"/></svg>';
  const cursor='url("data:image/svg+xml,'+encodeURIComponent(svg)+'") 12 12, default';
  style.textContent='.sandbox-embedded .phone>header{top:calc(var(--preview-status-height,44px) + 8px)}.sandbox-embedded #filters{top:calc(var(--preview-status-height,44px) + 56px)}.sandbox-embedded .detail-nav{height:calc(52px + var(--preview-status-height,44px));padding-top:var(--preview-status-height,44px)}.sandbox-embedded #toast.bookmark-toast{top:calc(var(--preview-status-height,44px) + 8px)}@media (hover:hover) and (pointer:fine){html,body,body *{cursor:'+cursor+' !important}}';
 }
